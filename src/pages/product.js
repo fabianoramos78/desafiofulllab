@@ -12,10 +12,12 @@ import ImageSlider from 'react-native-image-slider'
       style={{ width: '100%', height: 300 }}
       source={{uri: navigation.state.params.product.Skus[0].Images[0].ImageUrl}}
     />
+  
+
 */
 const Product = ({ navigation }) => (  
   <View style={styles.container}>
-    <Text style={styles.title}>{navigation.state.params.product.Name}</Text>      
+    <Text style={styles.title}>{navigation.state.params.product.Name}</Text>
     <Image
       style={{ width: '100%', height: 300 }}
       source={{uri: navigation.state.params.product.Skus[0].Images[0].ImageUrl}}

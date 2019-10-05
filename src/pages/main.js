@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import api from '../services/api'
+import currency from '../config/Currency'
 
 export default class Main extends Component {
 
@@ -52,7 +53,9 @@ export default class Main extends Component {
         style={{ width: '100%', height: 150 }}
         source={{ uri:item.Skus[0].Images[0].ImageUrl }}
       />
-      <Text style={styles.productComplementName}>{item.Skus[0].ComplementName}</Text>
+      <Text style={styles.productPrice}>{currency.format(item.Skus[0].Sellers[0].Price, { code: 'BRL' })}</Text>
+      <Text style={styles.productPriceCount}>Ou em até {item.Skus[0].Sellers[0].BestInstallment.Count} vezes de</Text>
+      <Text style={styles.productPriceValue}>{currency.format(item.Skus[0].Sellers[0].BestInstallment.Value, { code: 'BRL' })}</Text>
       <TouchableOpacity
         style={styles.productButton}
         onPress={() => {
@@ -105,9 +108,26 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333333',
   },
-  productComplementName: {
-    fontSize: 16,
-    color: '#999999',
+  productPrice: {
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight:'bold',
+    color: '#000',
+    marginTop: 5,
+    lineHeight: 24
+  },
+  productPriceCount: {
+    textAlign: 'center',
+    fontSize: 12,
+    color: '#000000',
+    marginTop: 5,
+    lineHeight: 24
+  },
+  productPriceValue: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight:'bold',
+    color: '#DA552F',
     marginTop: 5,
     lineHeight: 24
   },
