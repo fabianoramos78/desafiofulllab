@@ -1,29 +1,3 @@
-/*import React, {Component} from 'react'
-import { View, Text} from 'react-native'
-
-export default class Search extends Component {
-  state = {
-    Query: {Query}
-  }
-
-  static navigationOptions = {
-    title: `Busca por: ${this.state.Query}`
-  }
-
-  render(){
-
-    const { navigation } = this.props
-    const Query = navigation.getParam('Query')
-
-    return(
-
-      <View>
-        <Text>{Query}</Text>
-      </View>
-    )
-  }
-}*/
-
 import React, { Component } from 'react'
 import { 
   View, 
