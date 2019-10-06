@@ -5,11 +5,13 @@ YellowBox.ignoreWarnings(['Warning: componentWillReceiveProps']);
 
 import Main from './pages/main'
 import Product from './pages/product'
+import Search from './pages/search'
 
 export default createStackNavigator(
   {
     Main,
-    Product
+    Product,
+    Search
   }, 
   {
     navigationOptions: {

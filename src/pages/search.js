@@ -1,3 +1,29 @@
+/*import React, {Component} from 'react'
+import { View, Text} from 'react-native'
+
+export default class Search extends Component {
+  state = {
+    Query: {Query}
+  }
+
+  static navigationOptions = {
+    title: `Busca por: ${this.state.Query}`
+  }
+
+  render(){
+
+    const { navigation } = this.props
+    const Query = navigation.getParam('Query')
+
+    return(
+
+      <View>
+        <Text>{Query}</Text>
+      </View>
+    )
+  }
+}*/
+
 import React, { Component } from 'react'
 import { 
   View, 
@@ -10,18 +36,18 @@ import {
 import api from '../services/api'
 import currency from '../config/Currency'
 
-export default class Main extends Component {
-
+export default class Search extends Component { 
+  
   static navigationOptions = {
-    title: 'Desafio Fulllab'
+    title: 'Fulllab Desafio'
   }
 
   state = {
     productInfo:{},
     Products: [],
     Offset: 0,
-    Query:''
-  }
+    Query: this.props.navigation.getParam('Query')
+  } 
 
   componentDidMount() {
     this.searchProducts()
@@ -77,17 +103,11 @@ export default class Main extends Component {
   
   render() {
 
-    const { Query } = this.state
+    const { navigation } = this.props
+    const Query = navigation.getParam('Query')
 
     return(
-      <View style={styles.container}>        
-        <TextInput
-          style={{ fontSize: 20, width: '100%', height: 40, textAlign: 'center' }}
-          placeholder='Busca de produtos...'
-          onChangeText={ text => this.setState({ Query: text})}
-          value={Query}
-          onSubmitEditing={() => {this.props.navigation.navigate('Search', { 'Query' : this.state.Query })}}
-        />
+      <View style={styles.container}>
         <FlatList        
           contentContainerStyle={styles.list}
           data={this.state.Products}
@@ -96,8 +116,7 @@ export default class Main extends Component {
           numColumns={2}
           onEndReached={this.loadMore}
           onEndReachedThreshold={0.2}
-        />
-        
+        />        
       </View>
     )
   }
