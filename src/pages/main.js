@@ -59,11 +59,20 @@ export default class Main extends Component {
 
   renderItem = ({ item }) => (
     <View style={styles.productContainer}>
-      <Text style={styles.productName}>{item.Name}</Text>
+      <Text numberOfLines={4} style={styles.productName}>{item.Name}</Text>
       <Image
         style={{ width: '100%', height: 150 }}
         source={{ uri: item.Skus[0].Images[0].ImageUrl }}
       />
+      <Text style={styles.productPrice}>
+        {currency.format(item.Skus[0].Sellers[0].ListPrice, { code: 'BRL' })}      
+      </Text>
+      <Text style={styles.productPriceCount}>
+        Ou em até {item.Skus[0].Sellers[0].BestInstallment.Count} vezes de
+      </Text>
+      <Text style={styles.productPriceValue}>
+        {currency.format(item.Skus[0].Sellers[0].BestInstallment.Value, { code: 'BRL' })}
+      </Text>
       <TouchableOpacity
         style={styles.productButton}
         onPress={() => {

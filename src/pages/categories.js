@@ -57,7 +57,7 @@ export default class Categories extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Selecione sua Categoria</Text>
+        <Text style={styles.categoryTitle}>Selecione sua Categoria</Text> 
         <FlatList
           contentContainerStyle={styles.list}
           data={this.state.Categories}

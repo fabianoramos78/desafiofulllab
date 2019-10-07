@@ -21,7 +21,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: '#DA552F'
-  }
+  },
+  categoryTitle: {
+    marginTop: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#DA552F',
+    textAlign: 'center'
+  }    
 })
 
 export default styles

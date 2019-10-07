@@ -8,8 +8,8 @@ import {
 import styles from '../styles/product'
 
 const Product = ({ navigation }) => (
-  <ScrollView>
-    <View style={styles.container}>
+  <ScrollView style={styles.container}> 
+    
       <Text style={styles.title}>{navigation.state.params.product.Name}</Text>
       <Image
         style={{ width: '100%', height: 300 }}
@@ -19,7 +19,7 @@ const Product = ({ navigation }) => (
       <Text style={styles.title}>Especificações</Text>
       <Text style={styles.especificationsOne}>Marca: {navigation.state.params.product.Brand}</Text>
       <Text style={styles.especificationsTwo}>Composição: {navigation.state.params.product.Specifications.Composição}</Text>
-    </View>
+    
   </ScrollView>
 )
 

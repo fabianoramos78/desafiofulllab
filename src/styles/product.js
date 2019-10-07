@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     borderColor: '#dddddd',
     borderRadius: 5,
     padding: 20,
-    marginBottom: 10,
+    marginBottom: 5,
     margin: 2
   },
   title: {

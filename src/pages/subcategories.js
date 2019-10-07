@@ -46,8 +46,10 @@ export default class SubCategories extends Component {
     console.log(navigation)
     return(
       <View style={{flex: 1}}>  
-        <Text>{category}</Text>      
-        <Text>{category2}</Text>  
+        <Text style={styles.subCategoryTitle}>
+          Subcategorias de {category}
+        </Text>      
+        <Text style={styles.subCategoryTitle}>Não finalizado</Text>  
         <FlatList
           //contentContainerStyle={styles.list}
           data={this.state.Categories}
