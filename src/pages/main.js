@@ -1,101 +1,104 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react';
 import {
   View,
   Text,
   TextInput,
   FlatList,
   TouchableOpacity,
-  Image
-} from 'react-native'
-import api from '../services/api'
-import currency from '../config/Currency'
-import styles from '../styles/main'
+  Image,
+} from 'react-native';
+import api from '../services/api';
+import currency from '../config/Currency';
+import styles from '../styles/main';
 
 export default class Main extends Component {
-
   static navigationOptions = {
     title: 'Desafio Fulllab',
     headerTitleStyle: {
       textAlign: 'center',
       justifyContent: 'center',
       alignSelf: 'center',
-      width: '95%'
+      width: '95%',
     },
-  }
+  };
 
   state = {
     productInfo: {},
     Products: [],
     Offset: 0,
-    Query: ''
-  }
+    Query: '',
+  };
 
   componentDidMount() {
-    this.searchProducts()
+    this.searchProducts();
   }
 
   searchProducts = async (Offset = 0) => {
-    const response = await api.post('/Search/Criteria',
-      body = {
-        Query: `${this.state.Query}`,
-        Offset: `${Offset}`,
-        Size: 10,
-      }
-    )
-    const { Products, ...productInfo } = response.data
+    const response = await api.post('/Search/Criteria', {
+      Query: `${this.state.Query}`,
+      Offset: `${Offset}`,
+      Size: 10,
+    });
+    const {Products, ...productInfo} = response.data;
     this.setState({
       Products: [...this.state.Products, ...Products],
       productInfo,
-      Offset
-    })
-  }
+      Offset,
+    });
+  };
 
   loadMore = () => {
-    const { Offset, productInfo } = this.state
-    if (Offset === productInfo.Total) return
-    const offsetNumber = Offset + 1
-    this.searchProducts(offsetNumber)
-  }
+    const {Offset, productInfo} = this.state;
+    if (Offset === productInfo.Total) {
+      return;
+    }
+    const offsetNumber = Offset + 1;
+    this.searchProducts(offsetNumber);
+  };
 
-  renderItem = ({ item }) => (
+  renderItem = ({item}) => (
     <View style={styles.productContainer}>
-      <Text numberOfLines={4} style={styles.productName}>{item.Name}</Text>
+      <Text numberOfLines={4} style={styles.productName}>
+        {item.Name}
+      </Text>
       <Image
-        style={{ width: '100%', height: 150 }}
-        source={{ uri: item.Skus[0].Images[0].ImageUrl }}
+        style={{width: '100%', height: 150}}
+        source={{uri: item.Skus[0].Images[0].ImageUrl}}
       />
       <Text style={styles.productPrice}>
-        {currency.format(item.Skus[0].Sellers[0].ListPrice, { code: 'BRL' })}      
+        {currency.format(item.Skus[0].Sellers[0].ListPrice, {code: 'BRL'})}
       </Text>
       <Text style={styles.productPriceCount}>
         Ou em até {item.Skus[0].Sellers[0].BestInstallment.Count} vezes de
       </Text>
       <Text style={styles.productPriceValue}>
-        {currency.format(item.Skus[0].Sellers[0].BestInstallment.Value, { code: 'BRL' })}
+        {currency.format(item.Skus[0].Sellers[0].BestInstallment.Value, {
+          code: 'BRL',
+        })}
       </Text>
       <TouchableOpacity
         style={styles.productButton}
         onPress={() => {
-          this.props.navigation.navigate('Product', { product: item })
-        }}
-      >
+          this.props.navigation.navigate('Product', {product: item});
+        }}>
         <Text style={styles.productButtonText}>Saiba Mais</Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 
   render() {
-
-    const { Query } = this.state
+    const {Query} = this.state;
 
     return (
       <View style={styles.container}>
         <TextInput
-          style={{ fontSize: 20, width: '100%', height: 40, textAlign: 'center' }}
-          placeholder='Busca de produtos...'
-          onChangeText={text => this.setState({ Query: text })}
+          style={{fontSize: 20, width: '100%', height: 40, textAlign: 'center'}}
+          placeholder="Busca de produtos..."
+          onChangeText={text => this.setState({Query: text})}
           value={Query}
-          onSubmitEditing={() => { this.props.navigation.navigate('Search', { 'Query': this.state.Query }) }}
+          onSubmitEditing={() => {
+            this.props.navigation.navigate('Search', {Query: this.state.Query});
+          }}
         />
         <FlatList
           contentContainerStyle={styles.list}
@@ -109,13 +112,13 @@ export default class Main extends Component {
         <View style={styles.categoryContainer}>
           <TouchableOpacity
             style={styles.categoryButton}
-            onPress={() => { this.props.navigation.navigate('Categories') }}
-          >
+            onPress={() => {
+              this.props.navigation.navigate('Categories');
+            }}>
             <Text style={styles.categoryButtonText}>Categorias</Text>
           </TouchableOpacity>
         </View>
       </View>
-    )
+    );
   }
 }
-

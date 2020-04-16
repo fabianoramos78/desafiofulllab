@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://desafio.mobfiq.com.br'
-})
+  baseURL: 'https://desafio.mobfiq.com.br',
+});
 
-export default api
+export default api;

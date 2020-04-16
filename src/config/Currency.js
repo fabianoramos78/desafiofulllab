@@ -1,5 +1,5 @@
-import 'currency-formatter'
+import 'currency-formatter';
 
-var currency = require('currency-formatter')
+var currency = require('currency-formatter');
 
-export default currency
+export default currency;

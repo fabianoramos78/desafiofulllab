@@ -1,13 +1,13 @@
-import { createStackNavigator } from 'react-navigation'
+import {createStackNavigator} from 'react-navigation';
 import {YellowBox} from 'react-native';
 
 YellowBox.ignoreWarnings(['Warning: componentWillReceiveProps']);
 
-import Main from './pages/main'
-import Product from './pages/product'
-import Search from './pages/search'
-import Categories from './pages/categories'
-import SubCategories from './pages/subcategories'
+import Main from './pages/main';
+import Product from './pages/product';
+import Search from './pages/search';
+import Categories from './pages/categories';
+import SubCategories from './pages/subcategories';
 
 export default createStackNavigator(
   {
@@ -20,8 +20,9 @@ export default createStackNavigator(
   {
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#DA552f',               
+        backgroundColor: '#DA552f',
       },
       headerTintColor: '#FFF',
-    }
-})
+    },
+  },
+);
